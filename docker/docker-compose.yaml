@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  gpt-inference-service:
+    build:
+      context: ../  # 项目根目录
+      dockerfile: docker/Dockerfile
+    image: gpt-inference:v1.0
+    container_name: gpt-inference-service
+    restart: always
+    ports:
+      - "8000:8000"  # 映射端口到宿主机
+    volumes:
+      - ../models:/app/models  # 挂载模型目录（宿主机:容器内）
+      - ../data:/app/data      # 挂载数据目录（可选）
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all  # 使用所有可用GPU
+              capabilities: [gpu]
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all  # 可见GPU
+      - LC_ALL=C.UTF-8
+      - LANG=C.UTF-8
