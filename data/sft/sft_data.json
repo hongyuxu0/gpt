@@ -1,10 +1,4 @@
-// sft_data.json 示例
 [
   {"instruction": "解释什么是AI", "response": "人工智能（AI）是..."},
   {"instruction": "写一首诗", "response": "静夜思..."},
-]
-
-// rlhf_pairwise.json 示例
-[
-  {"instruction": "推荐一部电影", "chosen": "《星际穿越》...", "rejected": "《某烂片》..."}
 ]
